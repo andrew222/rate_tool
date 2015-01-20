@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:andrew222/rate_tool.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/fetch(:application)'
+set :deploy_to, "/var/www/rate_tool"
 
 # Default value for :scm is :git
 # set :scm, :git
