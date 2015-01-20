@@ -1,0 +1,6 @@
+resque_test:
+  cron: 29 * * * *
+  class: ResqueTest
+  queue: resque_test
+  args:
+  description: Resque Test
