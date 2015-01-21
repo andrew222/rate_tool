@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:andrew222/rate_tool.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/rate_tool"
+set :deploy_to, "/var/www/#{fetch(:application)}"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -34,6 +34,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+set :rvm_ruby_version, "2.1.3@#{fetch(:application)}"
+require 'rvm/capistrano'
 namespace :deploy do
 
   after :restart, :clear_cache do
