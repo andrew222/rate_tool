@@ -1,7 +1,7 @@
 class CreateRates < ActiveRecord::Migration
   def change
     create_table :rates do |t|
-      t.float :us_dollar, default: 0
+      t.string :bid_fx, default: ""
       t.string :type
 
       t.timestamps

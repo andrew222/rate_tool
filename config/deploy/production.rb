@@ -17,6 +17,23 @@ role :db,  %w{104.236.177.134}
 
 server '104.236.177.134', user: 'andrew', roles: %w{web app}
 
+namespace :deploy do
+  desc 'Restart app after deploy'
+  task :restart do
+    on roles(:app) do
+      on roles(:app), in: :sequence, wait: 25 do
+        execute "sudo monit restart #{fetch(:application)}_1"
+      end
+    end
+  end
+  [:stop, :start].each do |action|
+    task action do
+      on roles(:app) do
+        execute "sudo monit #{action} #{fetch(:application)}_1"
+      end
+    end
+  end
+end
 
 # Custom SSH Options
 # ==================

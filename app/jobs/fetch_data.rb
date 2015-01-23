@@ -12,11 +12,13 @@ class FetchData
     us_dollar_tr = trs[4]
     us_dollar = us_dollar_tr.xpath("./td")[2].text()
     if lastest_rate = Rate.last
-      if lastest_rate.to_s != us_dollar
-	rate = Rate.new(value: us_dollar.to_f)
+      if lastest_rate.bid_fx.to_s != us_dollar
+	rate = Rate.new(bid_fx: us_dollar)
 	rate.save
       end
-      p 'resque test'
+    else
+      rate = Rate.new(bid_fx: us_dollar)
+      rate.save
     end
   end
 end
