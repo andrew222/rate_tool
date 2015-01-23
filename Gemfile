@@ -32,6 +32,7 @@ gem 'nokogiri'
 gem 'thin'
 gem 'haml-rails'
 gem 'will_paginate'
+gem 'pg'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
@@ -45,6 +46,5 @@ gem 'resque-scheduler'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem "pry-debugger"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
