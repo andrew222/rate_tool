@@ -1,10 +1,11 @@
-Rates list
 %table
-  %tr
-    %th 买入价（汇）
-    %th 更新时间
-  - @rates.each do |rate|
+  %thead
     %tr
-      %td= rate.bid_fx
-      %td= rate.created_at.localtime.strftime("%Y-%-m-%-d %k:%M")
+      %th 买入价（汇）
+      %th 更新时间
+  %tbody
+    - @rates.each do |rate|
+      %tr
+        %td= rate.bid_fx
+        %td= rate.created_at.localtime.strftime("%Y-%-m-%-d %k:%M")
 = will_paginate @posts, {previous_label: "上一页", next_label: "下一页"}

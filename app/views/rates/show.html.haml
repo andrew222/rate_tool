@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @rate.type
+%p
+  %b Bid fix:
+  = @rate.bid_fix
+
+= link_to 'Edit', edit_rate_path(@rate)
+\|
+= link_to 'Back', rates_path
