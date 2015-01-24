@@ -22,7 +22,12 @@ namespace :deploy do
   task :restart do
     on roles(:app) do
       on roles(:app), in: :sequence, wait: 25 do
-        execute "sudo monit restart #{fetch(:application)}_1"
+        execute "sudo monit stop #{fetch(:application)}_1"
+        execute "sudo monit start #{fetch(:application)}_1"
+        execute "sudo monit stop #{fetch(:application)}_scheduler"
+        execute "sudo monit start #{fetch(:application)}_scheduler"
+        execute "sudo monit stop #{fetch(:application)}_resque"
+        execute "sudo monit start #{fetch(:application)}_resque"
       end
     end
   end
@@ -30,6 +35,8 @@ namespace :deploy do
     task action do
       on roles(:app) do
         execute "sudo monit #{action} #{fetch(:application)}_1"
+        execute "sudo monit #{action} #{fetch(:application)}_scheduler"
+        execute "sudo monit #{action} #{fetch(:application)}_resque"
       end
     end
   end
