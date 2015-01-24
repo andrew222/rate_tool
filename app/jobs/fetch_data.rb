@@ -14,7 +14,9 @@ class FetchData
     if lastest_rate = Rate.last
       if lastest_rate.bid_fx.to_s != us_dollar
 	rate = Rate.new(bid_fx: us_dollar)
-	rate.save
+	if rate.save
+	  Notifier.exchange_notifier_mail(rate).deliver if us_dollar.to_f >= Setting.first.except_rate
+	end
       end
     else
       rate = Rate.new(bid_fx: us_dollar)
