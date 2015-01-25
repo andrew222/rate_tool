@@ -35,7 +35,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 set :rvm_ruby_version, "2.1.3@#{fetch(:application)}"
 set :rvm_type, :system
 #require "rvm/capistrano"
-set :normalize_asset_timestamps, %{public/images public/javascripts public/stylesheets}
 namespace :deploy do
 
   after :restart, :clear_cache do
