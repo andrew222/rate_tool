@@ -6,7 +6,7 @@ class Rate < ActiveRecord::Base
     rates = Rate.where(created_at: (seven_days_ago..now))
     date_arr, rate_arr = [], []
     rates.collect do |rate|
-      date_arr << rate.created_at.strftime("%Y-%-m-%-d %H:%M")
+      date_arr << (rate.created_at.gmtime - 28800).strftime("%Y-%-m-%-d %H:%M")
       rate_arr << rate.bid_fx.to_f
     end
     [date_arr, rate_arr]
