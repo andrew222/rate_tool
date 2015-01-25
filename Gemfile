@@ -35,12 +35,12 @@ gem 'will_paginate'
 gem 'pg'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-group :development do
+#group :development do
   gem 'spring'
   gem 'pry-debugger'
   gem 'pry-rails'
   gem 'pry-doc'
-end
+#end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
