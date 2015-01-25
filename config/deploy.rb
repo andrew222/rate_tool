@@ -24,7 +24,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/initializers/setup_email.rb')
-set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+#set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/assets')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,6 +35,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 set :rvm_ruby_version, "2.1.3@#{fetch(:application)}"
 set :rvm_type, :system
 #require "rvm/capistrano"
+set :assets_roles, [:web, :app]
 namespace :deploy do
 
   after :restart, :clear_cache do
