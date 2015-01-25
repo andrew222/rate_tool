@@ -9,7 +9,7 @@
     - @rates.each do |rate|
       %tr
         %td= rate.bid_fx
-        %td= (rate.created_at.gmtime - 28800).localtime.strftime("%Y-%-m-%-d %k:%M")
+        %td= (rate.created_at.gmtime + 28800).localtime.strftime("%Y-%-m-%-d %k:%M")
 = will_paginate @posts, {previous_label: "上一页", next_label: "下一页"}
 :javascript
   $(document).ready(function(){
