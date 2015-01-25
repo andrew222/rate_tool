@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Except rate:
+  = @setting.except_rate
+
+= link_to 'Edit', edit_setting_path(@setting)
+\|
+= link_to 'Back', settings_path
