@@ -9,6 +9,11 @@ window.display_rate_chart = function(rates) {
     rangeSelector: {
       selected: 1
     },
+    xAxis: {
+      labels: {
+        enabled: false
+      }
+    },
     yAxis : {
       title: {
         enabled: false,
