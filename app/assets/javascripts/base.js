@@ -1,28 +1,28 @@
 window.display_rate_chart = function(rates) {
   var dates = rates[0],
       rate_arr = rates[1];
-  var chart = $(".hight-chart .rate").highcharts({
-    type: "line",
+  var chart = $(".hight-chart .rate").highcharts("StockChart", {
     title: {
       text: "浦发银行 外汇牌价(美元)",
       x: -20
     },
-    xAxis: {
-      categories: dates
+    rangeSelector: {
+      selected: 1
     },
     yAxis : {
       title: {
+        enabled: false,
         text: "rate"
-      },
-      plotLines: [{
-	value: 0,
-	width: 1,
-	color: '#808080'
-      }]
+      }
+    },
+    navigator : {
+      enabled : false
     },
     series: [{
       name: "rate",
-      data: rate_arr
-    }]
+      data: rates
+    }],
+    exporting: { enabled: false },
+    credits: { enabled: false }
   });
 }
