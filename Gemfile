@@ -38,6 +38,7 @@ gem 'haml-rails'
 gem 'will_paginate'
 gem 'pg'
 gem 'foundation-rails'
+gem 'will_paginate-foundation'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
