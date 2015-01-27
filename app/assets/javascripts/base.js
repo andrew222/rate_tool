@@ -7,7 +7,19 @@ window.display_rate_chart = function(rates) {
       x: -20
     },
     rangeSelector: {
-      selected: 1
+      buttons: [{
+        type: "24h",
+        count: 1,
+        text: "24小时"
+      }, {
+        type: "week",
+        count: 1,
+        text: "一周"
+      }, {
+        type: "month",
+        count: 1,
+        text: "一个月"
+      }]
     },
     xAxis: {
       labels: {
