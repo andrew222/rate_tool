@@ -1,16 +1,17 @@
-.hight-chart
-  .rate
-%table
-  %thead
-    %tr
-      %th 买入价（汇）
-      %th 更新时间
-  %tbody
-    - @rates.each do |rate|
+.row
+  .hight-chart.small-12.large-12.columns
+    .rate
+  %table.small-12.large-12.columns
+    %thead
       %tr
-        %td= rate.bid_fx
-        %td= (rate.created_at.gmtime + 28800).localtime.strftime("%Y-%-m-%-d %k:%M")
-= will_paginate @posts, {previous_label: "上一页", next_label: "下一页"}
+        %th 买入价（汇）
+        %th 更新时间
+    %tbody
+      - @rates.each do |rate|
+        %tr
+          %td= rate.bid_fx
+          %td= (rate.created_at.gmtime + 28800).localtime.strftime("%Y-%-m-%-d %k:%M")
+  = will_paginate @posts, {previous_label: "上一页", next_label: "下一页"}
 :javascript
   $(document).ready(function(){
     display_rate_chart(#{@rate_date_arr});

@@ -11,7 +11,7 @@ gem 'libv8', '= 3.16.14.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -37,6 +37,7 @@ gem 'thin'
 gem 'haml-rails'
 gem 'will_paginate'
 gem 'pg'
+gem 'foundation-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
