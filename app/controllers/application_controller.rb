@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     remote_ip = request.remote_ip
     if session[remote_ip].nil?
       result = GeoIP.new(data_file_path).country(remote_ip)
-      if !result.nil? && result.to_hash[:country_name] != "China"
+      if !result.nil? && ["China", "Hong Kong", "Taiwan", "Macau"].index(result.to_hash[:country_name]).nil?
 	session[remote_ip] = "en"
       else
 	session[remote_ip] = "zh-CN"
