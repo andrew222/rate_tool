@@ -1,0 +1,8 @@
+en:
+  shared:
+    paginator:
+      previous_label: "prev"
+      next_label: "next"
+  rates:
+    created_at: "created at"
+    bid_fx: "bid fx"

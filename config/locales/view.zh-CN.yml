@@ -1,0 +1,8 @@
+zh-CN:
+  shared:
+    paginator:
+      previous_label: "上一页"
+      next_label: "下一页"
+  rates:
+    created_at: "更新时间"
+    bid_fx: "买入价（汇）"
