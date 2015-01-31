@@ -10,6 +10,33 @@ window.display_rate_chart = function(rates) {
       x: -20
     },
     rangeSelector: {
+      inputDateFormat: "%Y-%m-%d",
+      buttonTheme: {
+	width: 54,
+	r: 6,
+	fill: {
+	  fontWeight: "bold",
+	  style: {
+	    color: "black"
+	  }
+	},
+	states: {
+	  hover: {
+	    fontWeight: "bold",
+	    fill: "#A4A4A4",
+	    style: {
+	      color: "white"
+	    }
+	  },
+	  select: {
+	    fontWeight: "bold",
+	    fill: "#A4A4A4",
+	    style: {
+	      color: "white"
+	    }
+	  }
+	}
+      },
       buttons: [{
         type: "24h",
         count: 1,
@@ -24,12 +51,21 @@ window.display_rate_chart = function(rates) {
         text: "一个月"
       }]
     },
+    tooltip: {
+      formatter: function(){
+	return "汇率: " + this.y + "<br />更新时间: " + Highcharts.dateFormat("%Y-%m-%d %H:%M", this.x)
+      }
+    },
     xAxis: {
       labels: {
         enabled: false
       }
     },
     yAxis : {
+      labels: {
+	align: "left",
+      },
+      offset: -8,
       title: {
         enabled: false,
         text: "rate"
