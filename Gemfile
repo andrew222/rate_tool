@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-#source 'https://ruby.taobao.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -43,7 +42,7 @@ gem 'will_paginate-foundation'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
   gem 'spring'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-doc'
 end
