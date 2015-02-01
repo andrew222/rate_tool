@@ -10,7 +10,7 @@ class ActivationsController < ApplicationController
     return if @user.active?
 
     if @user.activate!
-      @user.deliver_activation_confirmation!
+      Resque.enqueue(SendEmailJob, @user.id, "deliver_activation_confirmation!")
       redirect_to myaccount_path
     else
       render :new

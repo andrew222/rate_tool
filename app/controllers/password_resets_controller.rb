@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user
-      Resque.enqueue(SendEmailJob, @user, "deliver_password_reset_instructions!")
+      Resque.enqueue(SendEmailJob, @user.id, "deliver_password_reset_instructions!")
       flash[:notice] = t("shared.password_reset_instructions")
       redirect_to root_path
     else
@@ -20,7 +20,6 @@ class PasswordResetsController < ApplicationController
   def update
     @user.password = params[:password]
     @user.password_confirmation = params[:password]
-    debugger
     if @user.save
       flash[:success] = t("shared.update_password_successful")
       redirect_to myaccount_path
