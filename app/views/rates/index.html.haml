@@ -10,7 +10,7 @@
       - @rates.each do |rate|
         %tr
           %td= rate.bid_fx
-          %td= (rate.created_at.gmtime + 28800).localtime.strftime("%Y-%-m-%-d %k:%M")
+          %td= (rate.created_at).strftime("%Y-%-m-%-d %k:%M")
   = will_paginate @posts, {previous_label: t("shared.paginator.previous_label"), next_label: t("shared.paginator.next_label"), renderer: FoundationPagination::Rails}
 :javascript
   $(document).ready(function(){
