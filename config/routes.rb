@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :rates
+  get "myaccount" => "users#show", as: :myaccount
+
 
   get 'login' => 'user_sessions#new', as: :login
   get 'signup' => 'users#new', as: :signup
