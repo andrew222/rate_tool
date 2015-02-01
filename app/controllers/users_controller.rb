@@ -8,9 +8,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
     if @user.save
       flash[:notice] = t("shared.signup_successful")
+      @user.deliver_activation_instructions!
+      flash[:notice] = "请先激活账号。"
       redirect_to root_path
     else
       render :new

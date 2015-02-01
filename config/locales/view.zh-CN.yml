@@ -6,9 +6,15 @@ zh-CN:
     password_forgotten: "忘记密码？"
     must_login: "请先登录."
     welcome: "欢迎，%{email}"
+    activation_instruction: "请激活账号"
+    activation_instruction_confirmation: "帐号已经激活，欢迎使用。"
     paginator:
       previous_label: "上一页"
       next_label: "下一页"
+    operation:
+      show: "查看"
+      edit: "修改"
+      destroy: "删除"
   rates:
     created_at: "更新时间"
     bid_fx: "买入价（汇）"
@@ -17,3 +23,7 @@ zh-CN:
     logout_successful: "已经成功退出。"
   users:
     signup_successful: "已经注册成功。请先根据邮件激活账号。"
+  settings:
+    list_title: "我的设置"
+    exception_rate: "期望汇率"
+    new: "新建"

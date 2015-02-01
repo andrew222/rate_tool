@@ -1,4 +1,7 @@
 .row
+  - unless flash.nil?
+    .flash.small-12.large-12.columns
+      = flash[:notice]
   .hight-chart.small-12.large-12.columns
     .rate
   %table.small-12.large-12.columns

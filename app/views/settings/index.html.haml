@@ -1,9 +1,9 @@
-%h1 Listing settings
+%h1= t("settings.list_title")
 
-%table
+%table.small-12.large-12.column
   %thead
     %tr
-      %th Except rate
+      %th= t("settings.exception_rate")
       %th
       %th
       %th
@@ -12,10 +12,10 @@
     - @settings.each do |setting|
       %tr
         %td= setting.except_rate
-        %td= link_to 'Show', setting
-        %td= link_to 'Edit', edit_setting_path(setting)
-        %td= link_to 'Destroy', setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t("shared.operation.show"), setting
+        %td= link_to t("shared.operation.edit"), edit_setting_path(setting)
+        %td= link_to t("shared.operation.destroy"), setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Setting', new_setting_path
+= link_to t('settings.new'), new_setting_path, class: "button"

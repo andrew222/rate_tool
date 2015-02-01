@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :activations, only: [:new, :create]
+
   resources :users
 
   resources :user_sessions, only: [:new, :create, :destroy]
@@ -19,12 +21,14 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :rates
-  get "myaccount" => "users#show", as: :myaccount
+  get "/myaccount" => "users#show", as: :myaccount
 
 
-  get 'login' => 'user_sessions#new', as: :login
-  get 'signup' => 'users#new', as: :signup
-  get 'logout' => 'user_sessions#destroy', as: :logout
+  get '/login' => 'user_sessions#new', as: :login
+  get '/signup' => 'users#new', as: :signup
+  get '/logout' => 'user_sessions#destroy', as: :logout
+  get '/register/:activation_code' => 'activations#new', as: :register
+  post '/activate/:id' => 'activations#create', as: :activate
   # Example resource route with options:
   #   resources :products do
   #     member do

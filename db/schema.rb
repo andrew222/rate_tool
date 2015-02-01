@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201074721) do
+ActiveRecord::Schema.define(version: 20150201082618) do
 
   create_table "rates", force: true do |t|
     t.string   "bid_fx",     default: ""
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150201074721) do
     t.string   "perishable_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",              default: false
   end
 
 end
