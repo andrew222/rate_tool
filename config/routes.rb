@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :password_resets, except: [:destroy]
+
   resources :activations, only: [:new, :create]
 
   resources :users

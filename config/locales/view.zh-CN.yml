@@ -8,6 +8,10 @@ zh-CN:
     welcome: "欢迎，%{email}"
     activation_instruction: "请激活账号"
     activation_instruction_confirmation: "帐号已经激活，欢迎使用。"
+    unable_find_user: "没有找到用户"
+    unable_find_user_by_email: "没有找到用户%{email}"
+    password_reset_instructions: "请按照邮件的内容进行操作"
+    update_password_successful: "密码已经修改，请重新登录"
     paginator:
       previous_label: "上一页"
       next_label: "下一页"
@@ -27,3 +31,9 @@ zh-CN:
     list_title: "我的设置"
     exception_rate: "期望汇率"
     new: "新建"
+  password_resets:
+    reset_password: "重置密码"
+    desc: "请输入注册邮箱，点击重置按钮重置密码"
+    update_password: "修改密码"
+    update_password_desc: "请输入密码，点击修改按钮修改密码"
+    password_resets_instruction: "请按照邮件说明重置密码"

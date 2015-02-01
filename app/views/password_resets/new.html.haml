@@ -1,0 +1,9 @@
+.row
+  .title.small-12.large-12
+    %h4= t("password_resets.reset_password")
+  .panels.small-12.large-12
+    %p= t("password_resets.desc")
+  .form-block.small-12.large-12
+    = form_tag password_resets_path do
+      = text_field_tag :email
+      = submit_tag t("password_resets.reset_password"), class: "button"
