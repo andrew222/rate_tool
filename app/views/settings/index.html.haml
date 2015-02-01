@@ -1,4 +1,4 @@
-%h1= t("settings.list_title")
+%h2= t("settings.list_title")
 
 %table.small-12.large-12.column
   %thead
@@ -16,6 +16,5 @@
         %td= link_to t("shared.operation.edit"), edit_setting_path(setting)
         %td= link_to t("shared.operation.destroy"), setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to t('settings.new'), new_setting_path, class: "button"
+- if false
+  = link_to t('settings.new'), new_setting_path, class: "button"

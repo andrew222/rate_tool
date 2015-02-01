@@ -9,4 +9,8 @@
   %body
     .header
       = render partial: "layouts/header"
+    .row
+      - unless flash[:notice].nil?
+        .panel.callout.radius.small-12.large-12.columns
+          %p= flash[:notice]
     = yield
