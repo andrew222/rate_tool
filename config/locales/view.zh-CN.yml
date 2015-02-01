@@ -1,8 +1,19 @@
 zh-CN:
   shared:
+    login: "登录"
+    logout: "退出"
+    sign_up: "注册"
+    password_forgotten: "忘记密码？"
+    must_login: "请先登录."
+    welcome: "欢迎，%{email}"
     paginator:
       previous_label: "上一页"
       next_label: "下一页"
   rates:
     created_at: "更新时间"
     bid_fx: "买入价（汇）"
+  user_sessions:
+    login_successful: "已经成功登录。"
+    logout_successful: "已经成功退出。"
+  users:
+    signup_successful: "已经注册成功。请先根据邮件激活账号。"

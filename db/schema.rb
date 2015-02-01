@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124085946) do
+ActiveRecord::Schema.define(version: 20150201074721) do
 
   create_table "rates", force: true do |t|
     t.string   "bid_fx",     default: ""
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20150124085946) do
 
   create_table "settings", force: true do |t|
     t.float    "except_rate", default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

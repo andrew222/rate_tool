@@ -1,0 +1,11 @@
+%nav.top-bar{role: "navigation", data: {option: "is_hover: false"}}
+  .row
+    .small-12.large-12.columns
+      %section.top-bar-section.login-signup
+        %ul.right
+          - if !current_user
+            %li= link_to t("shared.login"), login_path, class: "login-btn button round"
+            %li= link_to t("shared.sign_up"), signup_path, class: "signup-btn button round"
+          - else
+            %li= link_to t("shared.welcome", email: current_user.email), current_user
+            %li= link_to t("shared.logout"), logout_path, class: "login-btn button round"

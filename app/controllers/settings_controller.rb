@@ -1,10 +1,11 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  before_filter :require_user
 
   # GET /settings
   # GET /settings.json
   def index
-    @settings = Setting.all
+    @settings = current_user.settings
   end
 
   # GET /settings/1

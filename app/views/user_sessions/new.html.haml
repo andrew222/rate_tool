@@ -1,0 +1,8 @@
+.row
+  .small-6.large-6.columns
+    %h2.title= t("shared.login")
+    .login_form
+      = simple_form_for @user_session do |f|
+        = f.input :email
+        = f.input :password
+        = f.submit t("shared.login"), class: "button submit-btn"

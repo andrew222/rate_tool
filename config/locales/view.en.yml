@@ -1,8 +1,16 @@
 en:
   shared:
+    login: "Log In"
+    logout: "Log Out"
+    sign_up: "Register"
+    password_forgotten: "forget password?"
+    must_login: "You must be logged out to access this page."
     paginator:
       previous_label: "prev"
       next_label: "next"
   rates:
     created_at: "created at"
     bid_fx: "bid fx"
+  user_sessions:
+    login_successful: "Login successful."
+    logout_successful: "Logout successful."

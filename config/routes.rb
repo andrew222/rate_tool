@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
 
+  resources :user_sessions, only: [:new, :create, :destroy]
   resources :settings
 
   mount SecureResqueServer.new, :at => '/resque'
@@ -18,6 +20,9 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :rates
 
+  get 'login' => 'user_sessions#new', as: :login
+  get 'signup' => 'users#new', as: :signup
+  get 'logout' => 'user_sessions#destroy', as: :logout
   # Example resource route with options:
   #   resources :products do
   #     member do

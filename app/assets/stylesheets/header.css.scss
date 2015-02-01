@@ -1,0 +1,10 @@
+.login-signup {
+  li { margin-right: 8px; }
+  .login-btn, .signup-btn {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+    &:hover {
+      background-color: #007095 !important;
+    }
+  }
+}

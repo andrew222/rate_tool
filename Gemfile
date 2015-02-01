@@ -39,6 +39,8 @@ gem 'pg'
 gem 'foundation-rails'
 gem 'will_paginate-foundation'
 gem 'geoip'
+gem 'simple_form'
+gem 'authlogic'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
@@ -46,6 +48,8 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-doc'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password
