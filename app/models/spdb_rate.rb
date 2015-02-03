@@ -1,0 +1,2 @@
+class SpdbRate < Rate
+end
