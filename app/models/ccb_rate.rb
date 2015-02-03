@@ -1,0 +1,2 @@
+class CcbRate < Rate
+end
