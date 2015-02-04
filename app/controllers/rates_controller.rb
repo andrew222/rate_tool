@@ -4,8 +4,8 @@ class RatesController < ApplicationController
   # GET /rates
   # GET /rates.json
   def index
-    @rates = Rate.paginate(:page => params[:page]).order("created_at desc")
-    @rate_date_arr = Rate.all_rates
+    @rates = SpdbRate.paginate(:page => params[:page]).order("created_at desc")
+    @rate_date_arr = SpdbRate.all_rates
   end
 
   # GET /rates/1
