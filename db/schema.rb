@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201082618) do
+ActiveRecord::Schema.define(version: 20150203135006) do
 
   create_table "rates", force: true do |t|
     t.string   "bid_fx",     default: ""
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bid_cash",   default: ""
+    t.string   "so_cash",    default: ""
+    t.string   "so_fx",      default: ""
+    t.string   "mid",        default: ""
   end
 
   create_table "settings", force: true do |t|
