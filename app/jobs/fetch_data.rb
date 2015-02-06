@@ -11,8 +11,17 @@ class FetchData
     doc = Nokogiri::HTML(open("http://ebank.spdb.com.cn/net/QueryExchangeRate.do"))
     trs = doc.xpath("//table[@class='table_comm']/tr")
     us_dollar_tr = trs[4]
+    spdb_us_dollar_mid = us_dollar_tr.xpath("./td")[1].text()
     spdb_us_dollar_bid_fx = us_dollar_tr.xpath("./td")[2].text()
+    spdb_us_dollar_bid_cash = us_dollar_tr.xpath("./td")[3].text()
+    spdb_us_dollar_so_cash = us_dollar_tr.xpath("./td")[4].text()
+    spdb_us_dollar_so_fx = spdb_us_dollar_so_cash
+    rate_hash["so_cash"] = spdb_us_dollar_so_cash
+    rate_hash["mid"] = spdb_us_dollar_mid
     rate_hash["bid_fx"] = spdb_us_dollar_bid_fx
+    rate_hash["bid_cash"] = spdb_us_dollar_bid_cash
+    rate_hash["so_cash"] = spdb_us_dollar_so_cash
+    rate_hash["so_fx"] = spdb_us_dollar_so_fx
     spdb_rate = SpdbRate.last
     build_rate(rate_hash, spdb_rate, "spdb")
 
@@ -22,7 +31,15 @@ class FetchData
     unless ccb_dollar.nil?
       ccb_us_dollar_elem = ccb_dollar.first().parent
       ccb_us_dollar_bid_fx = ccb_us_dollar_elem.xpath("./FXR_XCH_BUYIN").text()
+      ccb_us_dollar_so_cash = ccb_us_dollar_elem.xpath("./FXR_XCH_SELLOUT").text()
+      ccb_us_dollar_so_fx = ccb_us_dollar_so_cash
+      ccb_us_dollar_bid_cash = ccb_us_dollar_elem.xpath("./FXR_CUR_BUYIN").text()
+      ccb_us_dollar_mid = ccb_us_dollar_elem.xpath("./MID_RATE").text()
       rate_hash["bid_fx"] = uniform_rate(ccb_us_dollar_bid_fx)
+      rate_hash["so_cash"] = uniform_rate(ccb_us_dollar_so_cash)
+      rate_hash["so_fx"] = uniform_rate(ccb_us_dollar_so_fx)
+      rate_hash["bid_cash"] = uniform_rate(ccb_us_dollar_bid_cash)
+      rate_hash["mid"] = uniform_rate(ccb_us_dollar_mid)
       ccb_rate = CcbRate.last
       build_rate(rate_hash, ccb_rate, "ccb")
     end
@@ -34,7 +51,7 @@ class FetchData
 
   def self.build_rate(hash, rate_obj, rate_type)
     us_dollar = hash["bid_fx"]
-    unless us_dollar.match(/^\d+\.\d{2}$/).nil?
+    unless us_dollar.match(/^\d+\.\d{1,2}$/).nil?
       if lastest_rate = rate_obj
 	if lastest_rate.bid_fx.to_s != us_dollar
           rate = rate_obj.class.new(hash)
@@ -51,7 +68,6 @@ class FetchData
         else
           rate = CcbRate.new(hash)
         end
-        rate.bid_fx =  us_dollar
 	rate.save
       end
     end
