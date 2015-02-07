@@ -22,11 +22,15 @@ class FetchData
     rate_hash["bid_cash"] = spdb_us_dollar_bid_cash
     rate_hash["so_cash"] = spdb_us_dollar_so_cash
     rate_hash["so_fx"] = spdb_us_dollar_so_fx
+    datetime_str = doc.xpath(".//div[@class='mainDiv']/div").text()
+    rate_hash["published_at"] = uniform_datetime(datetime_str)
     spdb_rate = SpdbRate.last
     build_rate(rate_hash, spdb_rate, "spdb")
 
     rate_hash = {}
     ccb_doc = Nokogiri::XML(open("http://forex.ccb.com/cn/home/news/jshckpj.xml"))
+    datetime_str = ccb_doc.xpath(".//ReferencePriceSettlements/TIMESTAMP").text()
+    rate_hash["published_at"] = uniform_datetime(datetime_str)
     ccb_dollar = ccb_doc.xpath(".//ReferencePriceSettlement/CM_CURR_COD[text()='14']")
     unless ccb_dollar.nil?
       ccb_us_dollar_elem = ccb_dollar.first().parent
@@ -60,6 +64,8 @@ class FetchData
       rate_hash["so_fx"] = boc_us_dollar_so_fx
       rate_hash["bid_cash"] = boc_us_dollar_bid_cash
       rate_hash["mid"] = boc_us_dollar_mid
+      datetime_str = boc_us_dollar_elem[7].text()
+      rate_hash["published_at"] = uniform_datetime(datetime_str)
       boc_rate = BocRate.last
       build_rate(rate_hash, boc_rate, "boc")
     end
@@ -69,6 +75,14 @@ class FetchData
     return (rate.to_f*100).round(2).to_s
   end
 
+  def self.uniform_datetime(str)
+    unless str
+      str.match(/(\d{4})\-?\.?(\d{1,2})\-?\.?(\d{1,2})\s(\d{2})\:(\d{2})/)
+      Time.new($1, $2, $3, $4, $5)
+    else
+      Time.now
+    end
+  end
   def self.build_rate(hash, rate_obj, rate_type)
     us_dollar = hash["bid_fx"]
     unless us_dollar.match(/^\d+(\.\d{1,2})?$/).nil?
