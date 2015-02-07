@@ -22,6 +22,7 @@ zh-CN:
   rates:
     created_at: "更新时间"
     bid_fx: "买入价（汇）"
+    growth_rate: "增长率：%{growth} %"
   user_sessions:
     login_successful: "已经成功登录。"
     logout_successful: "已经成功退出。"

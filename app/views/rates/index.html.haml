@@ -1,7 +1,15 @@
 .row
-  .hight-chart.small-12.large-12.columns
+  - unless current_user.nil?
+    .growth_rate
+      - growth = Rate.growth_rate(3).round(2)
+      - if growth < 0
+        .green= t("rates.growth_rate", {growth: growth})
+      - else
+        .red= t("rates.growth_rate", {growth: growth})
+
+  .hight-chart.small-12.large-12
     .rate
-  %table.small-12.large-12.columns
+  %table.small-12.large-12
     %thead
       %tr
         %th= t("rates.bid_fx")

@@ -16,12 +16,24 @@ class Rate < ActiveRecord::Base
     end
   end
 
-  def self.daily_growth_rate
-    Time.zone = "Beijing"
-    now = Time.zone.now
-    yestday = now - 1.day
-    last_rate_of_yestday = SpdbRate.where(created_at: (yestday.beginning_of_day..yestday.end_of_day)).last
-    last_rate_of_today = SpdbRate.where(created_at: (now.beginning_of_day..now.end_of_day)).last
-    (last_rate_of_today.bid_fx.to_f - last_rate_of_yestday.bid_fx.to_f)/last_rate_of_yestday.bid_fx.to_f
+  def self.growth_rate(days_before)
+    now = Time.now
+    if now.utc?
+      Time.zone = "Beijing"
+      now = Time.zone.now
+    end
+    new_date = now - days_before.day
+    old_date = new_date - 1.day
+    old_rate = SpdbRate.where(created_at: (old_date.beginning_of_day..old_date.end_of_day)).last
+    new_rate = SpdbRate.where(created_at: (new_date.beginning_of_day..new_date.end_of_day)).last
+    unless old_rate.nil? || new_rate.nil?
+      ((new_rate.bid_fx.to_f - old_rate.bid_fx.to_f)/old_rate.bid_fx.to_f)*100
+    else
+      new_date = SpdbRate.last.created_at
+      old_date = new_date - 1.day
+      old_rate = SpdbRate.where(created_at: (old_date.beginning_of_day..old_date.end_of_day)).last
+      new_rate = SpdbRate.where(created_at: (new_date.beginning_of_day..new_date.end_of_day)).last
+      ((new_rate.bid_fx.to_f - old_rate.bid_fx.to_f)/old_rate.bid_fx.to_f)*100
+    end
   end
 end
