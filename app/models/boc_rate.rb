@@ -1,0 +1,2 @@
+class BocRate < Rate
+end

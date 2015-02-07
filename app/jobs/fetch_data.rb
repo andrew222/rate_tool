@@ -43,6 +43,26 @@ class FetchData
       ccb_rate = CcbRate.last
       build_rate(rate_hash, ccb_rate, "ccb")
     end
+
+    rate_hash = {}
+    boc_doc = Nokogiri::XML(open("http://srh.bankofchina.com/search/whpj/search.jsp?pjname=1316"))
+    boc_dollar_table = boc_doc.xpath(".//div[contains(@class, 'BOC_main')]/table")
+    unless boc_dollar_table.nil?
+      boc_us_dollar_tr = boc_dollar_table.xpath(".//tr")[1]
+      boc_us_dollar_elem = boc_us_dollar_tr.xpath("./td")
+      boc_us_dollar_bid_fx = boc_us_dollar_elem[1].text()
+      boc_us_dollar_bid_cash = boc_us_dollar_elem[2].text()
+      boc_us_dollar_so_fx = boc_us_dollar_elem[3].text()
+      boc_us_dollar_so_cash = boc_us_dollar_elem[4].text()
+      boc_us_dollar_mid = boc_us_dollar_elem[5].text()
+      rate_hash["bid_fx"] = boc_us_dollar_bid_fx
+      rate_hash["so_cash"] = boc_us_dollar_so_cash
+      rate_hash["so_fx"] = boc_us_dollar_so_fx
+      rate_hash["bid_cash"] = boc_us_dollar_bid_cash
+      rate_hash["mid"] = boc_us_dollar_mid
+      boc_rate = BocRate.last
+      build_rate(rate_hash, boc_rate, "boc")
+    end
   end
 
   def self.uniform_rate(rate)
@@ -51,7 +71,7 @@ class FetchData
 
   def self.build_rate(hash, rate_obj, rate_type)
     us_dollar = hash["bid_fx"]
-    unless us_dollar.match(/^\d+\.\d{1,2}$/).nil?
+    unless us_dollar.match(/^\d+(\.\d{1,2})?$/).nil?
       if lastest_rate = rate_obj
 	if lastest_rate.bid_fx.to_s != us_dollar
           rate = rate_obj.class.new(hash)
@@ -65,8 +85,10 @@ class FetchData
         case rate_type
         when "spdb"
           rate = SpdbRate.new(hash)
-        else
+	when "ccb"
           rate = CcbRate.new(hash)
+	else
+	  rate = BocRate.new(hash)
         end
 	rate.save
       end
