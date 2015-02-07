@@ -1,14 +1,20 @@
-.home-logo {
-  line-height: 44px;
-  span {
-    color: #007095;
-  }
-  i.fa-home {
-    color: #FFFFFF;
+.home-logo, .setting {
+  margin-top: 4px;
+  a {
+    height: 30px;
+    i.fa-home {
+      height: 30px;
+      color: #FFFFFF;
+    }
   }
 }
 .login-signup {
   li { margin-right: 8px; }
+  .setting {
+    i.fa-square-o {
+      color: #007095;
+    }
+  }
   .login-btn, .signup-btn {
     padding-left: 32px !important;
     padding-right: 32px !important;

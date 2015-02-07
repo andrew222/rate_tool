@@ -1,20 +1,21 @@
-%h2= t("settings.list_title")
+.row
+  %h2= t("settings.list_title")
 
-%table.small-12.large-12.column
-  %thead
-    %tr
-      %th= t("settings.exception_rate")
-      %th
-      %th
-      %th
-      
-  %tbody
-    - @settings.each do |setting|
+  %table.small-12.large-12
+    %thead
       %tr
-        %td= setting.except_rate
-        %td= link_to t("shared.operation.show"), setting
-        %td= link_to t("shared.operation.edit"), edit_setting_path(setting)
-        %td= link_to t("shared.operation.destroy"), setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th= t("settings.exception_rate")
+        %th
+        %th
+        %th
+        
+    %tbody
+      - @settings.each do |setting|
+        %tr
+          %td= setting.except_rate
+          %td= link_to t("shared.operation.show"), setting
+          %td= link_to t("shared.operation.edit"), edit_setting_path(setting)
+          %td= link_to t("shared.operation.destroy"), setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-- if false
-  = link_to t('settings.new'), new_setting_path, class: "button"
+  - if false
+    = link_to t('settings.new'), new_setting_path, class: "button"

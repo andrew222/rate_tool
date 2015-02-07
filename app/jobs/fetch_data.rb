@@ -76,11 +76,10 @@ class FetchData
   end
 
   def self.uniform_datetime(str)
-    unless str
-      str.match(/(\d{4})\-?\.?(\d{1,2})\-?\.?(\d{1,2})\s(\d{2})\:(\d{2})/)
-      Time.new($1, $2, $3, $4, $5)
+    unless str.blank?
+      Time.zone.parse(str)
     else
-      Time.now
+      Time.current
     end
   end
   def self.build_rate(hash, rate_obj, rate_type)
