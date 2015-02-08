@@ -9,4 +9,13 @@ $(document).ready(function(){
       rangeSelectorZoom: ""
     }
   });
+  toastr.options = {
+    "closeButton": true,
+    "positionClass": "toast-bottom-right",
+    "preventDuplicates": false,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+  }
 })

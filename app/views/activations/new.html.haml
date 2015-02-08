@@ -2,5 +2,5 @@
   %h3.small-12.large-12　激活帐号
   .form-section.small-12.large-12
     = form_for(@user, url: activate_path(@user.id), html: { method: :post }) do |f|
-      = f.submit "激活", class: "button"
+      = f.submit "激活", class: "button small"
 
