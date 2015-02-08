@@ -19,10 +19,14 @@ zh-CN:
       show: "查看"
       edit: "修改"
       destroy: "删除"
+      send_email: "邮件通知"
+      search: "搜索"
   rates:
     created_at: "更新时间"
     bid_fx: "买入价（汇）"
     growth_rate: "增长率：%{growth} %"
+    start_time: "起始时间"
+    end_time: "结束时间"
   user_sessions:
     login_successful: "已经成功登录。"
     logout_successful: "已经成功退出。"

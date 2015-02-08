@@ -62,6 +62,20 @@ class RatesController < ApplicationController
     end
   end
 
+  def search
+    start_time_str = params[:start_time]
+    end_time_str = params[:end_time]
+    respond_to do |format|
+      if start_time_str.blank? || end_time_str.blank?
+	format.js {render nothing: true}
+      else
+	start_time = Time.zone.parse(start_time_str)
+	end_time = Time.zone.parse(end_time_str)
+	@rates = SpdbRate.where(published_at: (start_time..end_time)).order("published_at desc")
+	format.js
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rate

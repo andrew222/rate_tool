@@ -9,18 +9,47 @@
 
   .hight-chart.small-12.large-12
     .rate
-  %table.small-12.large-12
-    %thead
-      %tr
-        %th= t("rates.bid_fx")
-        %th= t("rates.created_at")
-    %tbody
-      - @rates.each do |rate|
-        %tr
-          %td= rate.bid_fx
-          %td= (rate.published_at).strftime("%Y-%-m-%-d %k:%M")
-  = will_paginate @posts, {previous_label: t("shared.paginator.previous_label"), next_label: t("shared.paginator.next_label"), renderer: FoundationPagination::Rails}
+  - unless current_user.nil?
+    .filter
+      = form_tag search_path, remote: true do
+        .start-time.small-5.large-5.left
+          .small-3
+            %label.left.inline= t("rates.start_time")
+          .small-8.columns
+            = text_field_tag "start_time", "", class: "left"
+        .end-time.small-5.large-5.left
+          .small-3
+            %label.left.inline= t("rates.end_time")
+          .small-8.columns
+            = text_field_tag "end_time", "", class: "left"
+        .submit
+          = button_tag type: "submit", class: "small-2 large-2 button small round search-btn" do
+            = t("shared.operation.search")
+            = fa_icon("spinner spin", class: "fa-1x hide")
+  .rates-list
+    = render "rates_list"
+    = will_paginate @posts, {previous_label: t("shared.paginator.previous_label"), next_label: t("shared.paginator.next_label"), renderer: FoundationPagination::Rails}
 :javascript
   $(document).ready(function(){
     display_rate_chart(#{@rate_date_arr});
+    var $start = $(".start-time input"),
+        $end = $(".end-time input");
+    $start.datepicker({
+      changeMonth: true,
+      dateFormat: "yy-mm-dd",
+      onClose: function(selectedDate){
+        $end.datepicker("option", "minDate", selectedDate);
+      }
+    })
+    $end.datepicker({
+      changeMonth: true,
+      dateFormat: "yy-mm-dd",
+      onClose: function(selectedDate){
+        $start.datepicker("option", "maxDate", selectedDate);
+      }
+    });
+    $(".search-btn").bind("click", function(){
+      $(".rates-list").children().not(".fa-spinner").remove();
+      $(this).find(".fa-spinner").removeClass("hide");
+    })
   })

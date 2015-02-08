@@ -1,0 +1,10 @@
+%table.small-12.large-12.rates
+  %thead
+    %tr
+      %th= t("rates.bid_fx")
+      %th= t("rates.created_at")
+  %tbody
+    - @rates.each do |rate|
+      %tr
+        %td= rate.bid_fx
+        %td= (rate.published_at).strftime("%Y-%-m-%-d %k:%M")
