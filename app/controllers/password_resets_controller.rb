@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+  before_filter :destroy_current_user
   before_filter :require_no_user
   before_filter :load_user_using_perishable_token, only: [:edit, :update]
 
@@ -38,6 +39,12 @@ class PasswordResetsController < ApplicationController
     unless @user
       flash[:error] = t("shared.unable_find_user")
       redirect_to root_url
+    end
+  end
+
+  def destroy_current_user
+    if current_user
+      current_user_session.destroy
     end
   end
 end

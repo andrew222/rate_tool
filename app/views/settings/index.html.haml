@@ -5,6 +5,7 @@
     %thead
       %tr
         %th= t("settings.exception_rate")
+        %th= t("shared.operation.send_email")
         %th
         %th
         %th
@@ -13,9 +14,11 @@
       - @settings.each do |setting|
         %tr
           %td= setting.except_rate
+          %td
+            = link_to "#" do
+              = fa_icon("toggle-off", class: "fa-2x")
           %td= link_to t("shared.operation.show"), setting
           %td= link_to t("shared.operation.edit"), edit_setting_path(setting)
           %td= link_to t("shared.operation.destroy"), setting, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  - if false
-    = link_to t('settings.new'), new_setting_path, class: "button"
+- if false
+  = link_to t('settings.new'), new_setting_path, class: "button small"
