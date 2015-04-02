@@ -1,4 +1,6 @@
 class Rate < ActiveRecord::Base
+  attr_accessor :so_fix
+
   self.per_page = 10
   def self.weekly_rate
     now = Time.now.end_of_day

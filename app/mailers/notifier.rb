@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "andrew@ratetool.com"
+  default from: "noreply@ratetool.com"
 
   def exchange_notifier_mail(rate)
     @rate = rate
