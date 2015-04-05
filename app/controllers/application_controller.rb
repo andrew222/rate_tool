@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
 	flash[:notice] = t("shared.must_login")
-	redirect_to new_user_session_url
+	redirect_to login_path
 	return false
       end
     end
