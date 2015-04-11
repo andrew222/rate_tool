@@ -5,14 +5,6 @@
       %li.home-logo
         = link_to root_path do
           = fa_icon("home", class: "fa-2x")
-      - unless current_user.nil?
-        %li= link_to t("shared.welcome", email: current_user.email), current_user
+      = welcome_info(current_user)
     %ul.login-signup.right
-      - if !current_user
-        %li= link_to t("shared.login"), login_path, class: "login-btn button round"
-        %li= link_to t("shared.sign_up"), signup_path, class: "signup-btn button round"
-      - else
-        %li.setting
-          = link_to settings_path do
-            = fa_icon("gear", class: "fa-2x")
-        %li= link_to t("shared.logout"), logout_path, class: "login-btn button round"
+      = header_html(current_user)
