@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       data_file_path = "#{Rails.root}/public/system/GeoIP.dat"
     end
     remote_ip = request.remote_ip
+    session[remote_ip] = nil
     result = GeoIP.new(data_file_path).country(remote_ip)
     if !result.nil? && ["China", "Hong Kong", "Taiwan", "Macau"].index(result.to_hash[:country_name]).nil?
       session[remote_ip] = "en"
