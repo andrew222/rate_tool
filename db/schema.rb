@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150207050002) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "rates", force: true do |t|
     t.string   "bid_fx",       default: ""
     t.string   "type"
