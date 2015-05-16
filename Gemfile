@@ -1,5 +1,5 @@
-#source 'https://rubygems.org'
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
+#source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -7,7 +7,7 @@ gem 'rails', '4.1.6'
 gem 'execjs'
 
 gem 'therubyracer', :platform => :ruby
-gem 'libv8'
+gem 'libv8', '3.11.8.17'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
