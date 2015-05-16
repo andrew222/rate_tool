@@ -1,0 +1,6 @@
+en:
+  authlogic:
+    error_messages:
+      login_not_found: "User/password is not valid"
+      password_invalid: "User/password is not valid"
+      general_credentials_error: "User/password is not valid"

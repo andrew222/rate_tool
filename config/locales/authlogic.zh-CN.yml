@@ -1,0 +1,6 @@
+zh-CN:
+  authlogic:
+    error_messages:
+      login_not_found: "用户名或者密码不正确"
+      password_invalid: "用户名或者密码不正确"
+      general_credentials_error: "用户名或者密码不正确"
