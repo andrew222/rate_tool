@@ -1,0 +1,12 @@
+zh-CN:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "此邮箱已经被占用，请使用其它邮箱"
+            password:
+              too_short: "密码长度不够"
+            password_confirmation:
+              confirmation: "密码不一致"

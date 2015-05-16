@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "The email is already taken"
+            password:
+              too_short: "The password is too short"
+            password_confirmation:
+              confirmation: "Confirmation password is not the same as password"
