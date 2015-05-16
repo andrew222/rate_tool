@@ -7,7 +7,7 @@ gem 'rails', '4.1.6'
 gem 'execjs'
 
 gem 'therubyracer', :platform => :ruby
-gem 'libv8', '= 3.16.14.3'
+gem 'libv8'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -48,7 +48,6 @@ group :development do
   gem 'spring'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'pry-doc'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
