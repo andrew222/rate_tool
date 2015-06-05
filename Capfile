@@ -25,7 +25,6 @@ require 'capistrano/rails/migrations'
 
 # configuration for sidekiq
 require 'capistrano/sidekiq'
-require 'capistrano/sidekiq/monit'
 
 # configuration for whenever
 require "whenever/capistrano"
