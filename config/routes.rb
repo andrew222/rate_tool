@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :password_resets, except: [:destroy]
 
   resources :activations, only: [:new, :create]
