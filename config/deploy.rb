@@ -34,7 +34,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 
 set :rvm_ruby_version, "2.1.3@#{fetch(:application)}"
 set :rvm_type, :system
-#require "rvm/capistrano"
 set :assets_roles, [:web, :app]
 namespace :deploy do
 

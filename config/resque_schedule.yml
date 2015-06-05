@@ -1,6 +1,0 @@
-rate_tool:
-  cron: "*/5 * * * *"
-  class: FetchData
-  queue: fetch_data
-  args:
-  description: Fetch Data

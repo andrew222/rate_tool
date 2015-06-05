@@ -1,8 +1,6 @@
-# Simple Role Syntax
-# ==================
-# Supports bulk-adding hosts to roles, the primary server in each group
-# is considered to be the first unless any hosts have the primary
-# property set.  Don't declare `role :all`, it's a meta role.
+# configurition for whenever
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 role :app, %w{107.182.178.17}
 role :web, %w{107.182.178.17}
@@ -18,6 +16,11 @@ role :db,  %w{107.182.178.17}
 server '107.182.178.17', user: 'andrew', roles: %w{web app}
 
 namespace :deploy do
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && whenever --update-crontab #{fetch(:application)}"
+  end
+
   desc 'Restart app after deploy'
   task :restart do
     on roles(:app) do
