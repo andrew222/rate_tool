@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :settings
 
-  mount SecureResqueServer.new, :at => '/resque'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

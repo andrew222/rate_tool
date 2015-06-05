@@ -1,1 +1,0 @@
-require File.join(Rails.root,'config/resque_config')

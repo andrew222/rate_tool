@@ -4,9 +4,9 @@ require 'nokogiri'
 require 'open-uri'
 
 class FetchData
-  @queue = :fetch_data
+  include Sidekiq::Worker
 
-  def self.perform
+  def perform
     rate_hash = {}
     doc = Nokogiri::HTML(open("http://ebank.spdb.com.cn/net/QueryExchangeRate.do"))
     trs = doc.xpath("//table[@class='table_comm']/tr")
@@ -71,18 +71,18 @@ class FetchData
     end
   end
 
-  def self.uniform_rate(rate)
+  def uniform_rate(rate)
     return (rate.to_f*100).round(2).to_s
   end
 
-  def self.uniform_datetime(str)
+  def uniform_datetime(str)
     unless str.blank?
       Time.zone.parse(str)
     else
       Time.current
     end
   end
-  def self.build_rate(hash, rate_obj, rate_type)
+  def build_rate(hash, rate_obj, rate_type)
     us_dollar = hash["bid_fx"]
     unless us_dollar.match(/^\d+(\.\d{1,2})?$/).nil?
       if lastest_rate = rate_obj
