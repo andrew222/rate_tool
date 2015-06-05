@@ -1,6 +1,5 @@
 # configuration for whenever
 set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
 
 role :app, %w{107.182.178.17}
 role :web, %w{107.182.178.17}

@@ -1,7 +1,3 @@
-# configuration for sidekiq
-require 'capistrano/sidekiq'
-require 'capistrano/sidekiq/monit'
-
 # config valid only for current version of Capistrano
 lock '3.3.5'
 
