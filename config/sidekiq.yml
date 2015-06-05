@@ -1,0 +1,9 @@
+---
+:concurrency: 5
+:pidfile: tmp/pids/sidekiq_for_rate_tool.pid
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 5
+:queues:
+  - default

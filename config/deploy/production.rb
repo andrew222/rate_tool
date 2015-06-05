@@ -1,4 +1,4 @@
-# configurition for whenever
+# configuration for whenever
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
@@ -42,6 +42,13 @@ namespace :deploy do
         execute "sudo monit #{action} #{fetch(:application)}_resque"
       end
     end
+  end
+
+  task :add_default_hooks do
+    after 'deploy:starting', 'sidekiq:quiet'
+    after 'deploy:updated', 'sidekiq:stop'
+    after 'deploy:reverted', 'sidekiq:stop'
+    after 'deploy:published', 'sidekiq:start'
   end
 end
 

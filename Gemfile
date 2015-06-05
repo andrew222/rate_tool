@@ -42,6 +42,7 @@ gem 'simple_form'
 gem 'authlogic'
 gem 'font-awesome-rails'
 gem 'whenever', :require => false
+gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
