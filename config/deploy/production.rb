@@ -3,16 +3,17 @@ role :web, %w{107.182.178.17}
 role :db,  %w{107.182.178.17}
 
 set :branch, "change_resque_to_sidekiq"
+set :output, ""
 
 server '107.182.178.17', user: 'andrew', roles: %w{web app db}
 
 namespace :deploy do
   desc "Update the crontab file"
-  #task :update_crontab do
-    #on roles(:app) do
-      #execute "cd #{release_path} && whenever --set cron_log=#{release_path}/log/cron_log.log --update-crontab #{fetch(:application)}"
-    #end
-  #end
+  task :update_crontab do
+    on roles(:app) do
+      execute "cd #{release_path} && bundle exec whenever --set cron_log=#{release_path}/log/cron_log.log --update-crontab #{fetch(:application)}"
+    end
+  end
 
   desc 'Restart app after deploy'
   task :restart do
