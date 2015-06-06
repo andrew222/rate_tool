@@ -36,8 +36,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 set :rvm_ruby_version, "2.1.3@#{fetch(:application)}"
 set :rvm_type, :system
 set :assets_roles, [:web, :app]
-# configuration for sidekiq
-set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 namespace :deploy do
 
   after :restart, :clear_cache do
