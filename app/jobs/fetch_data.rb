@@ -5,6 +5,7 @@ require 'open-uri'
 
 class FetchData
   include Sidekiq::Worker
+  sidekiq_options :failures => true
 
   def perform
     rate_hash = {}
