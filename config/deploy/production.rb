@@ -7,8 +7,9 @@ server '107.182.178.17', user: 'andrew', roles: %w{web app db}
 namespace :deploy do
   desc "Update the crontab file"
   task :update_crontab do
-    on roles(:app) do
-      execute "cd #{release_path} && bundle exec whenever --set cron_log=#{release_path}/log/cron_log.log --update-crontab #{fetch(:application)}"
+    on roles(:db) do
+      # only works when ssh to server
+      execute "cd #{release_path};bundle exec whenever --update-crontab #{fetch(:application)}"
     end
   end
 
