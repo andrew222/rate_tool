@@ -3,6 +3,9 @@ lock '3.3.5'
 
 set :application, 'rate_tool'
 set :repo_url, 'git@github.com:andrew222/rate_tool.git'
+set :ssh_options, {
+  port: 26233
+}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
