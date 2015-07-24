@@ -76,6 +76,17 @@ class RatesController < ApplicationController
       end
     end
   end
+  def export
+    time = Time.zone.now
+
+    time_str = time.strftime("%Y%m%d")
+    file_name = "rates_#{time_str}.xls"
+    @rates = SpdbRate.where(created_at:  (time.beginning_of_day..time.end_of_day))
+    respond_to do |format|
+      format.xls {format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{file_name}\""}}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rate

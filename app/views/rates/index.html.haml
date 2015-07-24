@@ -26,6 +26,7 @@
           = button_tag type: "submit", class: "small-2 large-2 button small round search-btn" do
             = t("shared.operation.search")
             = fa_icon("spinner spin", class: "fa-1x hide")
+  .export= link_to "Export", export_rates_path(format: "xls")
   .rates-list
     = render "rates_list"
     = will_paginate @posts, {previous_label: t("shared.paginator.previous_label"), next_label: t("shared.paginator.next_label"), renderer: FoundationPagination::Rails}
