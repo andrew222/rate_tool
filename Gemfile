@@ -6,8 +6,6 @@ gem 'rails', '4.1.6'
 
 gem 'execjs'
 
-gem "therubyracer", "~> 0.10.2"
-gem 'libv8', '~> 3.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
