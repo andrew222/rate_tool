@@ -8,6 +8,9 @@ role :app, %w{127.0.0.1}
 role :web, %w{127.0.0.1}
 role :db,  %w{127.0.0.1}
 
+set :ssh_options, {
+  port: 22
+}
 
 # Extended Server Syntax
 # ======================
@@ -15,31 +18,37 @@ role :db,  %w{127.0.0.1}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '127.0.0.1', user: 'andrew', roles: %w{web app}
+server '127.0.0.1', user: 'webspider', roles: %w{web app}
 
+namespace :deploy do
+  desc "Update the crontab file"
+  task :update_crontab do
+    on roles(:db) do
+      # only works when ssh to server
+      execute "cd #{release_path};bundle exec whenever --update-crontab #{fetch(:application)}"
+    end
+  end
 
-# Custom SSH Options
-# ==================
-# You may pass any option but keep in mind that net/ssh understands a
-# limited set of options, consult[net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start).
-#
-# Global options
-# --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
-#
-# And/or per server (overrides global)
-# ------------------------------------
-# server 'example.com',
-#   user: 'user_name',
-#   roles: %w{web app},
-#   ssh_options: {
-#     user: 'user_name', # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: 'please use keys'
-#   }
+  desc 'Restart app after deploy'
+  task :restart do
+    on roles(:app) do
+      on roles(:app), in: :sequence, wait: 25 do
+        execute "sudo monit stop #{fetch(:application)}_1"
+        execute "sudo monit start #{fetch(:application)}_1"
+        execute "sudo monit stop #{fetch(:application)}_sidekiq"
+        execute "sudo monit start #{fetch(:application)}_sidekiq"
+      end
+    end
+  end
+  [:stop, :start].each do |action|
+    task action do
+      on roles(:app) do
+        execute "sudo monit #{action} #{fetch(:application)}_1"
+        execute "sudo monit #{action} #{fetch(:application)}_sidekiq"
+      end
+    end
+  end
+
+  after :updated, "deploy:stop"
+  after :finished, "deploy:start"
+end
