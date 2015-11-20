@@ -4,6 +4,8 @@ development: &dev
 
 test:
   <<: *dev
-  
 production: &pro
+  :host: localhost
+
+staging:  &staging
   :host: localhost
