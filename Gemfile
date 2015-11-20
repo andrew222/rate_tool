@@ -1,9 +1,10 @@
-#source 'https://rubygems.org'
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
+#source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 
+gem 'therubyracer'
 gem 'execjs'
 
 # Use SCSS for stylesheets
