@@ -1,24 +1,11 @@
-# Simple Role Syntax
-# ==================
-# Supports bulk-adding hosts to roles, the primary server in each group
-# is considered to be the first unless any hosts have the primary
-# property set.  Don't declare `role :all`, it's a meta role.
+role :app, %w{66.187.71.122}
+role :web, %w{66.187.71.122}
+role :db,  %w{66.187.71.122}
 
-role :app, %w{127.0.0.1}
-role :web, %w{127.0.0.1}
-role :db,  %w{127.0.0.1}
-
+server '66.187.71.122', user: 'webspider', roles: %w{web app db}
 set :ssh_options, {
   port: 22
 }
-
-# Extended Server Syntax
-# ======================
-# This can be used to drop a more detailed server definition into the
-# server list. The second argument is a, or duck-types, Hash and is
-# used to set extended properties on the server.
-
-server '127.0.0.1', user: 'webspider', roles: %w{web app}
 
 namespace :deploy do
   desc "Update the crontab file"
@@ -49,6 +36,6 @@ namespace :deploy do
     end
   end
 
-  after :updated, "deploy:stop"
-  after :finished, "deploy:start"
+  #after :updated, "deploy:stop"
+  #after :finished, "deploy:start"
 end
