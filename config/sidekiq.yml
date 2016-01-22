@@ -1,6 +1,6 @@
 ---
 :concurrency: 5
-:pidfile: tmp/pids/sidekiq_for_rate_tool.pid
+:pidfile: /var/www/rate_tool_new/shared/pids/sidekiq_for_rate_tool.pid
 staging:
   :concurrency: 10
 production:
